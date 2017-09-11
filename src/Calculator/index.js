@@ -13,6 +13,7 @@ class Calculator extends Component {
   buttonClick = (event) => {
     if(event.target.value === '='){
       try {
+        
         this.setState({
           calculate : eval(this.state.calculate)
         })
@@ -23,14 +24,26 @@ class Calculator extends Component {
 
     else if(event.target.value === 'CE'){
       let { calculate } = this.state
+      let calculateToString = calculate.toString()
       this.setState({
-        calculate : calculate.substring(0, calculate.length - 1)
+        calculate : calculateToString.substring(0, calculateToString.length - 1)
       })
+    }
+
+    else if(event.target.value === '.') {
+      try {
+        eval(this.state.calculate + event.target.value)
+        this.setState({
+          calculate : this.state.calculate + event.target.value
+        })
+      } catch (e) {
+        alert("Worng input")
+      }
     }
 
     else {
       try {
-        eval(this.state.calculate + event.target.value)
+        //eval(this.state.calculate + event.target.value)
         this.setState({
           calculate : this.state.calculate + event.target.value
         })
