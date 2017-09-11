@@ -8,10 +8,17 @@
 
 .bg-operator {
     background-color: #D3D3D3;
+    font-weight: bold;
 }
 
 .bg-blue {
     background-color: #498CF5;
+}
+
+.bg-equal {
+    background-color: #498CF5;
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
 button {
@@ -24,4 +31,6 @@ button {
 input {
     width: 314px;
     height: 30px;
+    text-align: right;
+    padding-right: 5px;
 }

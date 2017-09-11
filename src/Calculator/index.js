@@ -1,33 +1,26 @@
 import React, { Component } from 'react';
 import "./Style/index.css"
+import Botton from './botton';
 
 class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
       calculate : '',
-      sum : 0
+      sum : 0,
+      status: "CE"
     };
   }
 
   buttonClick = (event) => {
     if(event.target.value === '='){
       try {
-        
         this.setState({
           calculate : eval(this.state.calculate)
         })
       } catch (e) {
           alert("Worng input")
       }
-    }
-
-    else if(event.target.value === 'CE'){
-      let { calculate } = this.state
-      let calculateToString = calculate.toString()
-      this.setState({
-        calculate : calculateToString.substring(0, calculateToString.length - 1)
-      })
     }
 
     else if(event.target.value === '.') {
@@ -43,7 +36,6 @@ class Calculator extends Component {
 
     else {
       try {
-        //eval(this.state.calculate + event.target.value)
         this.setState({
           calculate : this.state.calculate + event.target.value
         })
@@ -53,42 +45,50 @@ class Calculator extends Component {
     }
   }
 
+  acButtonClick = (event) => {
+    let { calculate } = this.state
+    let calculateToString = calculate.toString()
+    this.setState({
+      calculate : calculateToString.substring(0, calculateToString.length - 1)
+    })
+  }
+  
   render() {
 
     return (
       <div>
         <div className="padding-top-10">
-          <input type="text" name="sum" value={this.state.calculate} />
+          <input type="text" name="sum" value={this.state.calculate} onChange={this.inputChange} />
         </div>
         <div>
-          <button className="bg-operator" type="button" value="(" onClick={this.buttonClick}>(</button>
-          <button className="bg-operator" type="button" value=")" onClick={this.buttonClick}>)</button>
-          <button className="bg-operator" type="button" value="%" onClick={this.buttonClick}>%</button>
-          <button className="bg-operator" type="button" value="CE" onClick={this.buttonClick}>CE</button>
+          <Botton bg='bg-operator' type='button' value="(" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-operator" type="button" value=")" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-operator" type="button" value="%" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-operator" type="button" value={this.state.status} onButtonClick={this.acButtonClick} />
         </div>
         <div>
-          <button className="bg-number" type="button" value="7" onClick={this.buttonClick}>7</button>
-          <button className="bg-number" type="button" value="6" onClick={this.buttonClick}>6</button>
-          <button className="bg-number" type="button" value="5" onClick={this.buttonClick}>5</button>
-          <button type="button" value="+" onClick={this.buttonClick}>+</button>
+          <Botton bg="bg-number" type="button" value="7" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-number" type="button" value="6" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-number" type="button" value="5" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-operator" type="button" value="/" onButtonClick={this.buttonClick} />
         </div>
         <div>
-          <button className="bg-number" type="button" value="4" onClick={this.buttonClick}>4</button>
-          <button className="bg-number" type="button" value="5" onClick={this.buttonClick}>5</button>
-          <button className="bg-number" type="button" value="6" onClick={this.buttonClick}>6</button>
-          <button className="bg-operator" type="button" value="-" onClick={this.buttonClick}>-</button>
+          <Botton bg="bg-number" type="button" value="4" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-number" type="button" value="5" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-number" type="button" value="6" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-operator" type="button" value="-" onButtonClick={this.buttonClick} />
         </div>
         <div>
-          <button className="bg-number" type="button" value="1" onClick={this.buttonClick}>1</button>
-          <button className="bg-number" type="button" value="2" onClick={this.buttonClick}>2</button>
-          <button className="bg-number" type="button" value="3" onClick={this.buttonClick}>3</button>
-          <button className="bg-operator" type="button" value="*" onClick={this.buttonClick}>*</button>
+          <Botton bg="bg-number" type="button" value="1" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-number" type="button" value="2" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-number" type="button" value="3" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-operator" type="button" value="*" onButtonClick={this.buttonClick} />
         </div>
         <div>
-          <button className="bg-number" type="button" value="0" onClick={this.buttonClick}>0</button>
-          <button className="bg-number" type="button" value="." onClick={this.buttonClick}>.</button>
-          <button className="bg-blue" type="button" value="=" onClick={this.buttonClick}>=</button>
-          <button className="bg-operator" type="button" value="+" onClick={this.buttonClick}>+</button>
+          <Botton bg="bg-number" type="button" value="0" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-number" type="button" value="." onButtonClick={this.buttonClick} />
+          <Botton bg="bg-equal" type="button" value="=" onButtonClick={this.buttonClick} />
+          <Botton bg="bg-operator" type="button" value="+" onButtonClick={this.buttonClick} />
         </div>
       </div>
     );
