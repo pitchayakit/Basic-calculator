@@ -2,6 +2,26 @@
     padding-top: 10px;
 }
 
+.bg-number {
+    background-color: #F5F5F5;
+}
+
+.bg-operator {
+    background-color: #D3D3D3;
+}
+
+.bg-blue {
+    background-color: #498CF5;
+}
+
 button {
-    width: 40px;
+    width: 72px;
+    height: 35px;
+    margin: 5px;
+    border: 0;
+}
+
+input {
+    width: 314px;
+    height: 30px;
 }
