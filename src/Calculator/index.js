@@ -51,6 +51,12 @@ class Calculator extends Component {
       }
     }
 
+    else if(event.target.value === 'AC') {
+      this.setState({
+        calculate : calculateToString.substring(0, calculateToString.length - 1)
+      })
+    }
+
     else {
       try {
         this.setState({
@@ -60,14 +66,6 @@ class Calculator extends Component {
         alert("Worng input")
       }
     }
-  }
-
-  acButtonClick = (event) => {
-    let { calculate } = this.state
-    let calculateToString = calculate.toString()
-    this.setState({
-      calculate : calculateToString.substring(0, calculateToString.length - 1)
-    })
   }
 
   render() {
