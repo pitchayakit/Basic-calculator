@@ -9,7 +9,7 @@ class Calculator extends Component {
     this.state = {
       calculate : '0',
       record : []
-    };
+    }
   }
 
   componentDidUpdate () {
@@ -92,11 +92,11 @@ class Calculator extends Component {
       {bg: "bg-number", value:"*"},
       {bg: "bg-equal", value:"="},
       {bg: "bg-operator", value:"+"}
-    ];
+    ]
     
     let mapCalculateBotton = calculateBotton.map((obj, index) => (
       <Botton key={index} bg={obj.bg} type="botton" value={obj.value} onButtonClick={this.buttonClick}/>
-    ));
+    ))
 
     return (
       <div className="calculator">

@@ -6,7 +6,7 @@ class Record extends Component {
     let { inputValue } = this.props
     return (
         <div>
-            {inputValue.map(item => <p>{item}</p>)}
+            {inputValue.map((item,index) => <p key={index}>{item}</p>)}
         </div>
     );
   }
