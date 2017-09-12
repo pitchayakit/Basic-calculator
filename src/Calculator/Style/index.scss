@@ -29,8 +29,13 @@ button {
 }
 
 input {
-    width: 314px;
+    width: 90%;
     height: 30px;
     text-align: right;
     padding-right: 5px;
+}
+
+.calculator {
+    width: 360px;
+    margin: 0 auto;
 }

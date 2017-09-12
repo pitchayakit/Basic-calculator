@@ -1,22 +1,39 @@
 import React, { Component } from 'react';
 import "./Style/index.css"
 import Botton from './botton';
+import Record from './record';
 
 class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      calculate : '',
-      sum : 0,
-      status: "CE"
+      calculate : '0',
+      record : []
     };
   }
 
+  componentDidUpdate () {
+    let { calculate } = this.state
+    let calculateToString = calculate.toString()
+    if(calculate[0] === '0' && calculateToString.length >= 2){
+      this.setState({
+        calculate : calculateToString.substring(1, calculateToString.length)
+      })
+    }
+  }
+ 
   buttonClick = (event) => {
+    let { calculate } = this.state
+    let calculateToString = calculate.toString()
+    if(calculate+event.target.value === '00'){
+      return 0
+    }
+
     if(event.target.value === '='){
       try {
         this.setState({
-          calculate : eval(this.state.calculate)
+          calculate : eval(this.state.calculate),
+          record : this.state.record.concat(this.state.calculate + "=" + eval(this.state.calculate))  
         })
       } catch (e) {
           alert("Worng input")
@@ -52,44 +69,44 @@ class Calculator extends Component {
       calculate : calculateToString.substring(0, calculateToString.length - 1)
     })
   }
-  
+
   render() {
+    let calculateBotton = [
+      {bg: "bg-operator", value:"("},
+      {bg: "bg-operator", value:")"}, 
+      {bg: "bg-operator", value:"%"}, 
+      {bg: "bg-operator", value:"AC"},
+      {bg: "bg-number", value:"7"},
+      {bg: "bg-number", value:"8"},
+      {bg: "bg-number", value:"9"},
+      {bg: "bg-operator", value:"/"},
+      {bg: "bg-number", value:"4"},
+      {bg: "bg-number", value:"5"},
+      {bg: "bg-number", value:"6"},
+      {bg: "bg-operator", value:"*"},
+      {bg: "bg-number", value:"1"},
+      {bg: "bg-number", value:"2"},
+      {bg: "bg-number", value:"3"},
+      {bg: "bg-operator", value:"-"},
+      {bg: "bg-number", value:"0"},
+      {bg: "bg-number", value:"*"},
+      {bg: "bg-equal", value:"="},
+      {bg: "bg-operator", value:"+"}
+    ];
+    
+    let mapCalculateBotton = calculateBotton.map((obj, index) => (
+      <Botton key={index} bg={obj.bg} type="botton" value={obj.value} onButtonClick={this.buttonClick}/>
+    ));
 
     return (
-      <div>
+      <div className="calculator">
         <div className="padding-top-10">
-          <input type="text" name="sum" value={this.state.calculate} onChange={this.inputChange} />
+          <input type="text" name="sum" value={this.state.calculate} />
         </div>
         <div>
-          <Botton bg='bg-operator' type='button' value="(" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-operator" type="button" value=")" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-operator" type="button" value="%" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-operator" type="button" value={this.state.status} onButtonClick={this.acButtonClick} />
+          {mapCalculateBotton}
         </div>
-        <div>
-          <Botton bg="bg-number" type="button" value="7" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-number" type="button" value="6" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-number" type="button" value="5" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-operator" type="button" value="/" onButtonClick={this.buttonClick} />
-        </div>
-        <div>
-          <Botton bg="bg-number" type="button" value="4" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-number" type="button" value="5" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-number" type="button" value="6" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-operator" type="button" value="-" onButtonClick={this.buttonClick} />
-        </div>
-        <div>
-          <Botton bg="bg-number" type="button" value="1" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-number" type="button" value="2" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-number" type="button" value="3" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-operator" type="button" value="*" onButtonClick={this.buttonClick} />
-        </div>
-        <div>
-          <Botton bg="bg-number" type="button" value="0" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-number" type="button" value="." onButtonClick={this.buttonClick} />
-          <Botton bg="bg-equal" type="button" value="=" onButtonClick={this.buttonClick} />
-          <Botton bg="bg-operator" type="button" value="+" onButtonClick={this.buttonClick} />
-        </div>
+        <Record inputValue={this.state.record}/>
       </div>
     );
   }
