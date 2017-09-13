@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./Style/index.css"
-import Radio from './radio';
+import Ul from './ul';
 
 class Training extends Component {
     constructor(props) {
@@ -41,7 +41,7 @@ class Training extends Component {
     render() {
     let { status, questions} = this.state
     let mapQuestions = questions.map((question, index) => (
-        <Radio key={index} label={question.label} name={question.name} checkRadio={this.checkRadio} questionId={index}/>
+        <Ul key={index} label={question.label} name={question.name} checkRadio={this.checkRadio} questionId={index}/>
     ))
     return (
         <div className="training">

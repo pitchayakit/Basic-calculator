@@ -3,7 +3,7 @@ import "./Style/index.css"
 //import classNames from 'classnames/bind';
 import List from './list';
 
-class Training extends Component {
+class Ul extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,4 +36,4 @@ class Training extends Component {
   }
 }
 
-export default Training;
+export default Ul;
