@@ -31,9 +31,10 @@ class Calculator extends Component {
 
     if(event.target.value === '='){
       try {
+        const sum = eval(this.state.calculate)
         this.setState({
-          calculate : eval(this.state.calculate),
-          record : this.state.record.concat(this.state.calculate + "=" + eval(this.state.calculate))  
+          calculate : sum,
+          record : this.state.record.concat(this.state.calculate + "=" + sum)  
         })
       } catch (e) {
           alert("Worng input")
@@ -104,7 +105,7 @@ class Calculator extends Component {
         <div>
           {mapCalculateBotton}
         </div>
-        <Record inputValue={this.state.record}/>
+        <Record inputValue={this.state.record} />
       </div>
     );
   }

@@ -16,18 +16,16 @@
   color: #FFFFFF;
   font-weight: bold; }
 
-button {
-  width: 72px;
-  height: 35px;
-  margin: 5px;
-  border: 0; }
-
-input {
-  width: 90%;
-  height: 30px;
-  text-align: right;
-  padding-right: 5px; }
-
 .calculator {
   width: 360px;
   margin: 0 auto; }
+  .calculator button {
+    width: 72px;
+    height: 35px;
+    margin: 5px;
+    border: 0; }
+  .calculator input {
+    width: 90%;
+    height: 30px;
+    text-align: right;
+    padding-right: 5px; }
