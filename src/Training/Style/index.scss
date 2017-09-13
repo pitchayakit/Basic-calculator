@@ -2,4 +2,12 @@
     padding-top: 30px;
     width: 300px;
     margin: 0 auto;
+
+    span {
+        padding: 0 10px;
+    }
+    li.active {
+        color: #FF0000;
+        background: #00FF00;
+    }
 }

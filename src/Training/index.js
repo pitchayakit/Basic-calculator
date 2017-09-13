@@ -12,33 +12,36 @@ class Training extends Component {
                 {label: "Q2", name:"Q2", click:0},
                 {label: "Q3", name:"Q3", click:0},
                 {label: "Q4", name:"Q4", click:0}
-            ]
+            ],
+            countClick: 0
         }
     }
 
-    checkRadio = (event) => {
-        let { questions } = this.state
-        const question = questions.find(function (obj) { return obj.name === event.target.name; });
-        question.click = 1
-        let radioClick = 0;
-        for (let i = 0; i < questions.length; i++) {
-            if(questions[i].click === 0) {
-                radioClick = 0
-                break;
-            }
-            radioClick = 1;
-        }
-        if(radioClick === 1){
+    componentDidUpdate(prevProps, prevState) {
+        let {questions, countClick} = this.state
+        if(questions.length === countClick && prevState.status === "False"){
             this.setState({
                 status : "true"
             })
+            console.log(questions)
         }
     }
 
+    checkRadio = (event,id,value) => {
+        let { questions } = this.state
+        if(questions[id].click !== 1){
+            questions[id].click = 1
+            this.setState({
+                countClick : this.state.countClick += 1
+            })
+        }
+        questions[id].value = value
+    }
+
     render() {
-    let { status,questions } = this.state
+    let { status, questions} = this.state
     let mapQuestions = questions.map((question, index) => (
-        <Radio key={index} label={question.label} name={question.name} checkRadio={this.checkRadio}/>
+        <Radio key={index} label={question.label} name={question.name} checkRadio={this.checkRadio} questionId={index}/>
     ))
     return (
         <div className="training">

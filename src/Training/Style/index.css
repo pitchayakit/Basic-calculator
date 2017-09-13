@@ -2,3 +2,8 @@
   padding-top: 30px;
   width: 300px;
   margin: 0 auto; }
+  .training span {
+    padding: 0 10px; }
+  .training li.active {
+    color: #FF0000;
+    background: #00FF00; }
