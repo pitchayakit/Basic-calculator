@@ -39,7 +39,6 @@ class Training extends Component {
     }
 
     render() {
-    console.log("AAA")
     let { status, questions} = this.state
     let mapQuestions = questions.map((question, index) => (
         <Ul key={index} label={question.label} name={question.name} checkAllUlClick={this.checkAllUlClick} questionId={index}/>
