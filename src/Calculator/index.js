@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import "./Style/index.css"
-import Botton from './botton';
-import Record from './record';
+import Botton from './botton'
+import Record from './record'
 
 class Calculator extends Component {
   constructor(props) {

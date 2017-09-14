@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import "./Style/index.css"
-//import classNames from 'classnames/bind';
 import List from './list';
 
 class Ul extends Component {
@@ -12,15 +12,15 @@ class Ul extends Component {
         }
     }
 
-    handleClick = (event, listId) => {
-        this.setState({ activeIndex: listId });
+    checkListClick = (event, listId) => {
+        this.setState({ activeIndex: listId })
     }
 
     render() {
-    const { label, name, checkRadio, questionId } = this.props
+    const { label, name, checkAllUlClick, questionId } = this.props
     const { answers, activeIndex } = this.state
     let mapAnswer = answers.map((answer, index) => (
-        <List key={index} name={name} checkRadio={checkRadio} value={answer} questionId={questionId} listId={index} listClick={this.handleClick} activeIndex={activeIndex}/>
+        <List key={index} name={name} checkAllUlClick={checkAllUlClick} value={answer} questionId={questionId} listId={index} checkListClick={this.checkListClick} activeIndex={activeIndex}/>
     ))
 
     return (
@@ -32,8 +32,15 @@ class Ul extends Component {
                 </ul>
             </label>
         </div>
-    );
+    )
   }
+}
+
+Ul.propTypes = {
+    label: PropTypes.string,
+    name: PropTypes.string,
+    checkAllUlClick: PropTypes.func,
+    questionId: PropTypes.number
 }
 
 export default Ul;

@@ -27,28 +27,30 @@ class Training extends Component {
         }
     }
 
-    checkRadio = (event,id,value) => {
+    checkAllUlClick = (event,id,value) => {
         let { questions } = this.state
         if(questions[id].click !== 1){
             questions[id].click = 1
             this.setState({
-                countClick : this.state.countClick += 1
+                countClick : this.state.countClick + 1
             })
         }
         questions[id].value = value
     }
 
     render() {
+    console.log("AAA")
     let { status, questions} = this.state
     let mapQuestions = questions.map((question, index) => (
-        <Ul key={index} label={question.label} name={question.name} checkRadio={this.checkRadio} questionId={index}/>
+        <Ul key={index} label={question.label} name={question.name} checkAllUlClick={this.checkAllUlClick} questionId={index}/>
     ))
+    
     return (
         <div className="training">
             {mapQuestions}
             <p>{status}</p>
         </div>
-    );
+    )
   }
 }
 
